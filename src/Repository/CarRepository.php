@@ -35,6 +35,31 @@ class CarRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+     public function moy($value): array
+    {
+       return $this->createQueryBuilder('c')
+            ->select('c.type', 'AVG(c.price) as averagePrice')
+            ->andWhere('c.type = :val')
+            ->setParameter('val', $value)
+            ->groupBy('c.type')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    public function findOneBySomeField($value): ?Car
 //    {

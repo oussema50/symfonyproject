@@ -17,4 +17,26 @@ class SearchController extends AbstractController
             'results' => $results,
         ]);
     }
+    #[Route('/moy', name: 'car_moy')]
+    public function calc(Request $request, CarRepository $carRepository): Response
+    {    $searchTerm = $request->query->get('type'); // Assuming the search term is passed via query parameter
+
+        $results = $carRepository->moy($searchTerm);
+        return $this->render('search/calcul.html.twig', [
+            'results' => $results,
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

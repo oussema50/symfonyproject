@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SearchController! {% endblock %}
+{% block body %}
+<h1>Search Results</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>moyenne</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for car in results %}
+            <tr>
+                <td>{{ car.type }}</td>
+                <td>{{ car.averagePrice }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

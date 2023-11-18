@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Type</th>
+                <th>Price</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
                 <td>{{ car.id }}</td>
                 <td>{{ car.type }}</td>
+                <td>{{ car.price }}</td>
                 <td>
                     <a href="{{ path('app_car_show', {'id': car.id}) }}">show</a>
                     <a href="{{ path('app_car_edit', {'id': car.id}) }}">edit</a>
@@ -25,7 +27,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
