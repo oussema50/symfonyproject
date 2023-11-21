@@ -81,9 +81,9 @@
         var nom = document.getElementById("name").value;
         // Redirect to the find route with the updated parameters
         if (nom.trim() === "") {
-       window.location.href = "{{ path('restau_find') }}search"?lat="+lat+"&log="+long" ;
+       window.location.href = "{{ path('restau_find') }}"+/search/"?lat="+latitude+"&log="+longitude" ;
        }else {
-        window.location.href = "{{ path('restau_search') }}"+/search"?name="+nom";
+        window.location.href = "{{ path('restau_search') }}"+/search/"?name="+nom";
         }
     }
 </script>
