@@ -16,7 +16,7 @@
     <label for="longitude">Longitude:</label>
     <input type="text" id="longitude" name="log" readonly>
     {# Button to trigger the search #}
-<button onclick="searchRestaurants()">Search Restaurants</button>
+<button id="Button1">Search Restaurants</button>
 </form>   
 <form id="monFormulaire2">
     <label for="name">Enter a Name :</label>
@@ -24,7 +24,7 @@
 
 
     {# Button to trigger the search #}
-<button onclick="searchRestaurants()">Search Restaurants</button>
+<button id="Button2">Search Restaurants</button>
 </form>   
 
 
@@ -50,42 +50,26 @@
         </tbody>
     </table>
 
-
-
-        <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for restau in results %}
-            <tr>
-                <td>{{ restau.id }}</td>
-                <td>{{ restau.name }}</td>
-            </tr>
-        {% else %}
-        
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 <script>
+document.getElementById('Button1').addEventListener('click', searchRestaurants);
+document.getElementById('Button2').addEventListener('click', searchRestaurants);
 
-    function searchRestaurants() {
+   function searchRestaurants() {
         var latitude = document.getElementById('latitude').value;
         var longitude = document.getElementById('longitude').value;
-        var nom = document.getElementById("name").value;
-        // Redirect to the find route with the updated parameters
-        if (nom.trim() === "") {
-       window.location.href = "{{ path('restau_find') }}"+/search/"?lat="+latitude+"&log="+longitude" ;
-       }else {
-        window.location.href = "{{ path('restau_search') }}"+/search/"?name="+nom";
-        }
+        var nom = document.getElementById('name').value;
+    // Construct the URL based on the conditions
+    var url;
+    var baseUrl = window.location.origin;
+    if (nom.trim() === "") {
+        url = baseUrl+"/search?lat=" + latitude + "&log=" + longitude;
+        window.location.href = url;
+    } else {
+        url = baseUrl"+"/search?name=" + nom;
+        window.location.href = url;
+    }
+     
     }
 </script>
-    <a href="{{ path('app_user_new') }}">Add New User</a>
+
 {% endblock %}

@@ -46,10 +46,10 @@ class RestauRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('r')
         ->select('r.id ,r.name')
-        ->andWhere('r.log + 0  > :val1')
-
-        ->andWhere('r.lat + 0> :val2')
-  
+        ->andWhere('r.log + 0 - :val1 > -0.03')
+        ->andWhere('r.log + 0  - :val1 < 0.03')
+        ->andWhere('r.lat + 0 - :val2 > -0.03')
+        ->andWhere('r.lat + 0  - :val2 < 0.03')
         ->setParameter('val1', $log)
         ->setParameter('val2', $lat)
         ->orderBy('r.id', 'ASC')

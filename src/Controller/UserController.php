@@ -16,27 +16,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
 
-    #[Route('/search/', name: 'restau_search', methods: ['GET'])]
+    #[Route('/', name: 'restau_search', methods: ['GET'])]
     public function search(Request $request, RestauRepository $restauRepository): Response
     {   
-        
-        $searchTerm = $request->query->get('name'); // Assuming the search term is passed via query parameter
-
-        $results = $restauRepository->findByExampleField($searchTerm);
-        return $this->render('user/index.html.twig', [
-            'results' => $results,
-        ]);
-    }
-        #[Route('/search/', name: 'restau_find', methods: ['GET'])]
-        public function find_nearest(Request $request, RestauRepository $restauRepository): Response
-        {   
-            $lat_Term = $request->query->get('lat');
+        $searchTerm = $request->query->get('name');// Assuming the search term is passed via query parameter
+        if (isset($searchTerm)) {
+            $results = $restauRepository->findByExampleField($searchTerm);
+            return $this->render('user/index.html.twig', [
+                'results' => $results,
+            ]);
+        } else {
             $log_Term = $request->query->get('log');
+            $lat_Term = $request->query->get('lat');
+
             $results = $restauRepository->find_nearest($lat_Term,$log_Term);
             return $this->render('user/index.html.twig', [
                 'results' => $results,
             ]);
         }
+
+    }
+
 
 
 

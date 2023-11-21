@@ -26,3 +26,5 @@ curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trust
 ngrok config add-authtoken 2SyyW6K6p11TZsJtWHJhHjvkzjJ_7vFReCusa51dShz8tGfza
 ######"#######
 sudo apt-get purge php7.*
+#######mysql_database docker 
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=123 -p 3306:3306 -v ./my-data:/var/lib/mysql mysql:8.0.35
