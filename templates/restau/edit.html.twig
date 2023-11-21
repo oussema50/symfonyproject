@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Restau{% endblock %}
+
+{% block body %}
+    <h1>Edit Restau</h1>
+
+    {{ include('restau/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_restau_index') }}">back to list</a>
+
+    {{ include('restau/_delete_form.html.twig') }}
+{% endblock %}

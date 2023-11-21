@@ -5,27 +5,44 @@
 {% block body %}
     <h1>User index</h1>
 
+    <h1>Your location is :</h1>
+{% include 'user/map.html.twig' %}
+
+
+<form id="monFormulaire1">
+    <label for="latitude">Latitude:</label>
+    <input type="text" id="latitude" name="lat" readonly>
+
+    <label for="longitude">Longitude:</label>
+    <input type="text" id="longitude" name="log" readonly>
+    {# Button to trigger the search #}
+<button onclick="searchRestaurants()">Search Restaurants</button>
+</form>   
+<form id="monFormulaire2">
+    <label for="name">Enter a Name :</label>
+    <input type="text" id="name" name="name" >
+
+
+    {# Button to trigger the search #}
+<button onclick="searchRestaurants()">Search Restaurants</button>
+</form>   
+
+
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Password</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+        {% for restau in results %}
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.password }}</td>
-                <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-                </td>
+                <td>{{ restau.id }}</td>
+                <td>{{ restau.name }}</td>
             </tr>
         {% else %}
+        
             <tr>
                 <td colspan="4">no records found</td>
             </tr>
@@ -33,5 +50,42 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
+
+
+        <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for restau in results %}
+            <tr>
+                <td>{{ restau.id }}</td>
+                <td>{{ restau.name }}</td>
+            </tr>
+        {% else %}
+        
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<script>
+
+    function searchRestaurants() {
+        var latitude = document.getElementById('latitude').value;
+        var longitude = document.getElementById('longitude').value;
+        var nom = document.getElementById("name").value;
+        // Redirect to the find route with the updated parameters
+        if (nom.trim() === "") {
+       window.location.href = "{{ path('restau_find') }}search"?lat="+lat+"&log="+long" ;
+       }else {
+        window.location.href = "{{ path('restau_search') }}"+/search"?name="+nom";
+        }
+    }
+</script>
+    <a href="{{ path('app_user_new') }}">Add New User</a>
 {% endblock %}

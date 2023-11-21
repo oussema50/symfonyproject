@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Restau{% endblock %}
+
+{% block body %}
+    <h1>Create new Restau</h1>
+
+{% include 'restau/map_restau.html.twig' %}
+
+    {{ include('restau/_form.html.twig') }}
+
+    <a href="{{ path('app_restau_index') }}">back to list</a>
+{% endblock %}

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Repository\RestauRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,11 +15,40 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/user')]
 class UserController extends AbstractController
 {
+
+    #[Route('/search/', name: 'restau_search', methods: ['GET'])]
+    public function search(Request $request, RestauRepository $restauRepository): Response
+    {   
+        
+        $searchTerm = $request->query->get('name'); // Assuming the search term is passed via query parameter
+
+        $results = $restauRepository->findByExampleField($searchTerm);
+        return $this->render('user/index.html.twig', [
+            'results' => $results,
+        ]);
+    }
+        #[Route('/search/', name: 'restau_find', methods: ['GET'])]
+        public function find_nearest(Request $request, RestauRepository $restauRepository): Response
+        {   
+            $lat_Term = $request->query->get('lat');
+            $log_Term = $request->query->get('log');
+            $results = $restauRepository->find_nearest($lat_Term,$log_Term);
+            return $this->render('user/index.html.twig', [
+                'results' => $results,
+            ]);
+        }
+
+
+
+
+
+
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
+        $results=[];
         return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'results' => $results,
         ]);
     }
 

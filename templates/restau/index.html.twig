@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restau index{% endblock %}
+
+{% block body %}
+    <h1>Restau index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Log</th>
+                <th>Lat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for restau in restaus %}
+            <tr>
+                <td>{{ restau.id }}</td>
+                <td>{{ restau.name }}</td>
+                <td>{{ restau.log }}</td>
+                <td>{{ restau.lat }}</td>
+                <td>
+                    <a href="{{ path('app_restau_show', {'id': restau.id}) }}">show</a>
+                    <a href="{{ path('app_restau_edit', {'id': restau.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_restau_new') }}">Create new</a>
+{% endblock %}
