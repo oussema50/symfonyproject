@@ -3,32 +3,29 @@
 {% block title %}Menu{% endblock %}
 
 {% block body %}
-    <h1>Menu</h1>
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Menu</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_menu_index') }}"> 
+                    View All Menus
+                </a>
+                                <a class="btn btn-outline-info float-right" href="{{ path('app_menu_index') }}">back to list
+                </a>
+                                <a class="btn btn-outline-info float-right" href="{{ path('app_menu_edit', {'id': menu.id}) }}">edit
+                </a>
+                    <div class="card-header"> {{ include('menu/_delete_form.html.twig') }} </div>
+            </div>
+            <div class="card-body">
+                <b class="text-muted">ID:</b>
+                <p>{{ menu.id }}</p>
+                <b class="text-muted">Restau ID </b>
+                <p>{{ menu.restauId }}</p>
+                <b class="text-muted">Image:</b>
+                <p><img src="{{ asset('/uploads/'~ menu.image) }}" alt="Menu Image" style="width: 300px; height: 200px; display: inline-block;"></p>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ menu.id }}</td>
-            </tr>
-            <tr>
-                <th>Restau_id</th>
-                <td>{{ menu.restauId }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>    {% if menu.image %}
-        <img src="{{ asset('/uploads/'~ menu.image) }}" alt="Menu Image" style="width: 300px; height: 200px; display: inline-block;">
-    {% else %}
-        <p>No image available</p>
-    {% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+            </div>
+        </div>
+    </div>
 
-    <a href="{{ path('app_menu_index') }}">back to list</a>
-
-    <a href="{{ path('app_menu_edit', {'id': menu.id}) }}">edit</a>
-
-    {{ include('menu/_delete_form.html.twig') }}
 {% endblock %}
