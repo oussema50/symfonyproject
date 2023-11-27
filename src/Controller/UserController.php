@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -20,6 +20,7 @@ class UserController extends AbstractController
     public function search(Request $request, RestauRepository $restauRepository): Response
     {   
         $searchTerm = $request->query->get('name');// Assuming the search term is passed via query parameter
+        
         if (isset($searchTerm)) {
             $results = $restauRepository->findByExampleField($searchTerm);
             return $this->render('user/index.html.twig', [

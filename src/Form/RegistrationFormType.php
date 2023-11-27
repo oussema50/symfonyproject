@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Form;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\Client;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -25,6 +25,16 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
+            ])
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'User' => 'ROLE_USER',
+                    'Owner' => 'ROLE_OWNER',
+                    // Add more roles as needed
+                ],
+                'multiple' => true,
+                'expanded' => true,
+                'label' => 'Roles',
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,

@@ -19,6 +19,9 @@ class User
     #[ORM\Column(length: 20)]
     private ?string $password = null;
 
+    #[ORM\Column]
+    private ?bool $is_client = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class User
     public function setPassword(string $password): static
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function isIsClient(): ?bool
+    {
+        return $this->is_client;
+    }
+
+    public function setIsClient(bool $is_client): static
+    {
+        $this->is_client = $is_client;
 
         return $this;
     }

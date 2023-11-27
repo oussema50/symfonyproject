@@ -3,17 +3,69 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-    {{ form_errors(registrationForm) }}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sign Up</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+<body>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Sign Up</h3>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(registrationForm) }}
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.email, {
+                                'attr': {'class': 'form-control'},
+                                'label': 'Email'
+                            }) }}
+                            {{ form_errors(registrationForm.email) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.plainPassword, {
+                                'attr': {'class': 'form-control'},
+                                'label': 'Password'
+                            }) }}
+                            {{ form_errors(registrationForm.plainPassword) }}
+                        </div>
+
+   <div class="mb-3 form-check">
+    {{ form_row(registrationForm.roles )}}
+</div>
+                        <div class="mb-3 form-check">
+                            {{ form_row(registrationForm.agreeTerms, {
+                                'attr': {'class': 'form-check-input'},
+                                'label': 'Agree to Terms'
+                            }) }}
+                            {{ form_errors(registrationForm.agreeTerms) }}
+                        </div>
+                        <div class="mb-3 text-center">
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        {{ form_end(registrationForm) }}
+                        </div>
+                        <a href= "{{path('app_login')}}">Do you have an account ? </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
 {% endblock %}
