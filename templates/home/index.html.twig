@@ -1,57 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Restaurant Reservation</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom Styles -->
-    <style>
-        body {
-            padding-top: 56px;
-        }
-
-        @media (min-width: 992px) {
-            body {
-                padding-top: 80px;
-            }
-        }
-
-        /* Right align the navigation items */
-        .navbar-nav.ml-auto {
-            margin-right: 0;
-            margin-left: 200px;
-        }
-
-        /* Style for Log In button */
-        .nav-link.login-btn {
-            color: #fff;
-            background-color: #17a2b8;
-            border-radius: 3px;
-            padding: 8px 15px;
-            margin-left: 300px;
-        }
-
-        /* Style for Sign Up button */
-        .nav-link.signup-btn {
-            color: #fff;
-            background-color: #17a2b8;
-            border-radius: 3px;
-            padding: 8px 15px;
-            margin-left: 10px;
-        }
-    </style>
-</head>
-
-<body>
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -62,28 +13,33 @@
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto ">
+                
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link link-color" href="#about">Home</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link link-color" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#reservation">Reservation</a>
+                        <a class="nav-link link-color" href="#best-restaurant">Restaurant</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link link-color" href="#best-menu">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
+                        <a class="nav-link link-color" href="#reservation">Reservation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
+                        <a class="nav-link link-color" href="#contact">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link login-btn" href="{{ path('app_login') }}">Log In</a>
+                    <li class="nav-item auth-btn">
+                        <a class="nav-link link-color login-btn" href="{{ path('app_login') }}">Log In</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link signup-btn" href="{{ path('app_register') }}">Sign Up</a>
+                    <li class="nav-item auth-btn">
+                        <a class="nav-link link-color signup-btn" href="{{ path('app_register') }}">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -95,44 +51,221 @@
         <img src="{{ asset('reservation.jpg') }}" alt="Restaurant Image" class="img-fluid">
     </section>
 
-    <!-- Header -->
-    <header class="bg-primary text-white text-center py-5">
+    <div class="bg-primary text-white text-center py-5">
         <div class="container">
-            <h1 class="display-4">Welcome to Our Restaurant</h1>
+            <h1 class="display-5">Welcome to Our Restaurant</h1>
             <p class="lead">Experience the finest dining with our online reservation system.</p>
         </div>
-    </header>
+    </div>
 
     <!-- About Section -->
     <section id="about" class="py-5">
         <div class="container">
+            <h2 class="section-title mb-4">About <span>Us</span></h2>
             <div class="row">
-                <div class="col-lg-6">
-                    <h2 class="display-4">About Us</h2>
-                    <p> </p>
-                </div>
-                <div class="col-lg-6">
-                    <img src="{{ asset('tek-up.png') }}" alt="About Us Image" class="img-fluid rounded">
-                </div>
+                
+                    <div class="about-content-img col-lg-5">
+                        <img src="https://t3.ftcdn.net/jpg/03/24/73/92/360_F_324739203_keeq8udvv0P2h1MLYJ0GLSlTBagoXS48.jpg" alt="restaurent" width="100%" >
+                    </div>
+                    <div class="about-content-text col-lg-6">
+                        <p class="text-secondary" >
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                            It has survived not only five centuries, but also the leap into electronic typesetting, 
+                            remaining essentially unchanged.
+                        </p>
+                        <button class="btn btn-danger">Read More</button>
+                    <div>
             </div>
         </div>
     </section>
 
-    <!-- Reservation Section -->
-    <section id="reservation" class="bg-light py-5">
+<!-- Best Restaurent Section -->
+    <section  id="best-restaurent" class=" bg-light py-5 py-5">
         <div class="container">
-            <h2 class="display-4 text-center">Make a Reservation</h2>
+            <h2 class="text-center text-primary  display-5">Best Restaurent</h2>
+            <h6 class="text-center text-dark " style="text-transform:uppercase;">choose the best restaurent</h6>
+            <div class="row py-5 justify-content-between">
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                    <img src="https://www.touchbistro.com/wp-content/uploads/2021/08/restaurant-interior-design-ideas-thumbnail.jpg" class="card-img-top" alt="restaurant" style="object-fit: cover;width: 100%;height: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Restaurant Title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                    <img src="https://www.touchbistro.com/wp-content/uploads/2021/08/restaurant-interior-design-ideas-thumbnail.jpg" class="card-img-top" alt="restaurant" style="object-fit: cover;width: 100%;height: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Restaurant Title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                    <img src="https://www.touchbistro.com/wp-content/uploads/2021/08/restaurant-interior-design-ideas-thumbnail.jpg" class="card-img-top" alt="restaurant" style="object-fit: cover;width: 100%;height: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Restaurant Title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                    <img src="https://www.touchbistro.com/wp-content/uploads/2021/08/restaurant-interior-design-ideas-thumbnail.jpg" class="card-img-top" alt="restaurant" style="object-fit: cover;width: 100%;height: 100%;">
+                    <div class="card-body">
+                        <h5 class="card-title">Restaurant Title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                
+            </div>
+           
+        </div>
+    </section>
+
+    <!-- Best Menu Section -->
+    <section id="best-menu" class="py-5">
+        <div class="container">
+            <h2 class="section-title mb-4">Best <span>Menu</span></h2>
+            <div class="row py-5 justify-content-between">
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sunday_roast_-_roast_beef_1.jpg/800px-Sunday_roast_-_roast_beef_1.jpg" 
+                        class="card-img-top" 
+                        alt="Beef Roast Source" 
+                        style="object-fit: cover;width: 100%;height: 100%;"
+                    >
+                    <div class="card-body">
+                        <h5 class="card-title">Beef Roast Source</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div> 
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Meat</li>
+                        <li class="list-group-item">Potatoes</li>
+                        <li class="list-group-item">Rice</li>
+                        <li class="list-group-item">Tomatoe</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Make Order</a>
+                        <a href="#" class="btn btn-danger">Read More</a>
+                    </div>
+                </div>
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sunday_roast_-_roast_beef_1.jpg/800px-Sunday_roast_-_roast_beef_1.jpg" 
+                        class="card-img-top" 
+                        alt="Beef Roast Source" 
+                        style="object-fit: cover;width: 100%;height: 100%;"
+                    >
+                    <div class="card-body">
+                        <h5 class="card-title">Beef Roast Source</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div> 
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Meat</li>
+                        <li class="list-group-item">Potatoes</li>
+                        <li class="list-group-item">Rice</li>
+                        <li class="list-group-item">Tomatoe</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Make Order</a>
+                        <a href="#" class="btn btn-danger">Read More</a>
+                    </div>
+                </div>
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sunday_roast_-_roast_beef_1.jpg/800px-Sunday_roast_-_roast_beef_1.jpg" 
+                        class="card-img-top" 
+                        alt="Beef Roast Source" 
+                        style="object-fit: cover;width: 100%;height: 100%;"
+                    >
+                    <div class="card-body">
+                        <h5 class="card-title">Beef Roast Source</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div> 
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Meat</li>
+                        <li class="list-group-item">Potatoes</li>
+                        <li class="list-group-item">Rice</li>
+                        <li class="list-group-item">Tomatoe</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Make Order</a>
+                        <a href="#" class="btn btn-danger">Read More</a>
+                    </div>
+                </div>
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sunday_roast_-_roast_beef_1.jpg/800px-Sunday_roast_-_roast_beef_1.jpg" 
+                        class="card-img-top" 
+                        alt="Beef Roast Source" 
+                        style="object-fit: cover;width: 100%;height: 100%;"
+                    >
+                    <div class="card-body">
+                        <h5 class="card-title">Beef Roast Source</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div> 
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Meat</li>
+                        <li class="list-group-item">Potatoes</li>
+                        <li class="list-group-item">Rice</li>
+                        <li class="list-group-item">Tomatoe</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">Make Order</a>
+                        <a href="#" class="btn btn-danger">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Reservation Section -->
+    <section id="reservation" class="bg-light py-5 reservation">
+        <div class="container">
+            <h2 class="text-center text-primary reservation_title display-5">Get a Reservation</h2>
             <!-- Add your reservation form here -->
-            <p class="text-center">Reservation form goes here...</p>
+            <h6 class="text-center text-dark ">BOOK YOUR TABLE</h6>
+            <form class="form mt-5">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="email"  placeholder="Email">
+                </div>
+                <div class="mb-3">
+                    <input type="phone" class="form-control" id="phone"  placeholder="Phone">
+                </div>
+                <div class="mb-3">
+                    <input type="date" class="form-control" id="date"  placeholder="checkin">
+                </div>
+                <div class="mb-3">
+                    <input type="time" class="form-control" id="time"  placeholder="time">
+                </div>
+                <div class="mb-3">
+                    <input type="number" class="form-control" id="guest"  placeholder="guest">
+                </div>
+                  <button type="submit" class="btn btn-primary">Reserve Now</button>
+            </form>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-5">
         <div class="container">
-            <h2 class="display-4 text-center">Contact Us</h2>
+            <h2 class="section-title text-center">Contact <span>Us</span></h2>
             <!-- Add your contact information and form here -->
-            <p class="text-center">Contact information and form go here...</p>
+            <form class="form">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="3"></textarea>
+                </div>
+            </form>
         </div>
     </section>
 
@@ -144,10 +277,4 @@
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-</body>
-
-</html>
-
-
-
 {% endblock %}

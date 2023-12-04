@@ -1,0 +1,27 @@
+/* Global Style */
+.section-title
+{
+    font-size: 45px;}
+.section-title span
+{
+    color:#0d6efd;
+}
+
+/* start navbar */
+
+.login-btn,
+.signup-btn
+{
+    background-color: #0d6efd;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+/* End navbar */
+
+/* Start reservation */
+.reservation
+{
+    color:white;
+}
+/* End reservation */
