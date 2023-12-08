@@ -32,8 +32,9 @@ class RestauController extends AbstractController
         $restau = new Restau();
         $form = $this->createForm(RestauType::class, $restau);
         $form->handleRequest($request);
-
+        $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
+            $restau->setClient($user->getId());
             $entityManager->persist($restau);
             $entityManager->flush();
 
@@ -59,8 +60,9 @@ class RestauController extends AbstractController
     {
         $form = $this->createForm(RestauType::class, $restau);
         $form->handleRequest($request);
-
+        $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
+            $restau->setClient($user);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_restau_index', [], Response::HTTP_SEE_OTHER);

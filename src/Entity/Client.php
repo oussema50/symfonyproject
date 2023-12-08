@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -28,6 +30,15 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Restau::class)]
+    private Collection $restau;
+
+
+    public function __construct()
+    {
+        $this->restau = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -98,4 +109,36 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    /**
+     * @return Collection<int, Restau>
+     */
+    public function getRestau(): Collection
+    {
+        return $this->restau;
+    }
+
+    public function addRestau(Restau $restau): static
+    {
+        if (!$this->restau->contains($restau)) {
+            $this->restau->add($restau);
+            $restau->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRestau(Restau $restau): static
+    {
+        if ($this->restau->removeElement($restau)) {
+            // set the owning side to null (unless already changed)
+            if ($restau->getClient() === $this) {
+                $restau->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
 }

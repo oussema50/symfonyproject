@@ -32,7 +32,8 @@ class MenuController extends AbstractController
         $menu = new Menu();
         $form = $this->createForm(MenuType::class,$menu);
         $form->handleRequest($request);
-
+        $user = $this->getUser();
+        
         if($form->isSubmitted() && $form->isValid()){
             $menu = $form->getData();
             if($request->files->get('menu')['image']){
@@ -40,6 +41,10 @@ class MenuController extends AbstractController
                 $image_name = time().'_'.$image->getClientOriginalName();
                 $image->move($this->getParameter('image_directory'),$image_name);
                 $menu->setImage($image_name);
+            }
+            if($user){
+                $id = $user->getId();
+                $menu->setRestau($id);
             }
             // tell Doctrine you want to (eventually) save the Product (no queries yet)
                 $this->entityManager->persist($menu);

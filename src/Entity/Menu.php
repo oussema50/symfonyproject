@@ -13,27 +13,16 @@ class Menu
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $restau_id = null;
-
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\ManyToOne(inversedBy: 'menus')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Restau $restau = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getRestauId(): ?int
-    {
-        return $this->restau_id;
-    }
-
-    public function setRestauId(int $restau_id): static
-    {
-        $this->restau_id = $restau_id;
-
-        return $this;
     }
 
     public function getImage(): ?string
@@ -44,6 +33,18 @@ class Menu
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getRestau(): ?Restau
+    {
+        return $this->restau;
+    }
+
+    public function setRestau(?Restau $restau): static
+    {
+        $this->restau = $restau;
 
         return $this;
     }
