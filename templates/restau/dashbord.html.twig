@@ -1,0 +1,250 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashbord{% endblock %}
+{% block stylesheets %}
+
+            {#{ encore_entry_link_tags('app') }#}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <link href="{{asset('css/main.css')}}" rel="stylesheet">
+        {% endblock %}
+{% block body %}
+
+    <nav class="navbar navbar-expand-lg bg-body-dark sticky-top" style="box-shadow: 0px 0px 15px rgba(0,0,0,0.1);background-color:white;">
+        <div class="container">
+            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-list" viewBox="0 0 18 18">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"></path>
+                </svg>
+            </a>
+            
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="border-radius:30px;">
+            </form>
+            <div class="d-flex">
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://icons.veryicon.com/png/o/miscellaneous/standard/avatar-15.png" style="width:30px;height:30px;border-radius:50%;">
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+   
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width:300px;">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Restau Name</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+                <ul class="list" style="list-style:none">
+                    
+                    <li>
+                        <li><a href="#" style="text-decoration:none; padding:10px 0; display:inline-block;width:100%;color:#000;">Menus</a></li>
+                    
+                    </li>
+                    <li>
+                        <div class="accordion-item" style="border:none;">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" style="padding-left:0; " data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Reservation
+                            </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul style="list-style:none; padding:0">
+                                        <li><a href="#" style="text-decoration:none; padding:10px 0; display:inline-block;width:100%">All Reservations</a></li>
+                                        <li><a href="#" style="text-decoration:none; padding:10px 0; display:inline-block;width:100%">canceled reservations</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <li><a href="#" style="text-decoration:none; padding:10px 0; display:inline-block;width:100%; color:#000;">Tables</a></li>
+
+                    </li>
+                    <li><a href="#" style="color:black;width: 100%;display: inline-block;padding: 10px 0; text-decoration:none;color:#000;">customers</a></li>
+                    <li><a href="{{ path('app_restauowner_new') }}" style="color:black;width: 100%;display: inline-block;padding: 10px 0; text-decoration:none;color:#000;">Your restaurants</a></li>
+                </ul>
+        </div>
+    </div>
+    <main class="py-5" style="background-color:#e5e5e538;">
+        <section class="overview-statistics pb-5">
+            <div class="container">
+                <h2 class="pb-4">Overview</h2>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 card text-bg-primary mb-3 mx-3" style="box-shadow:5px 5px 15px rgba(0,0,0,0.1);border:none">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Reservation</h5>
+                            <strong>200</strong>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 card text-bg-primary mb-3 mx-3" style="box-shadow:5px 5px 15px rgba(0,0,0,0.1);border:none">
+                        <div class="card-body">
+                            <h5 class="card-title">Conseled Reservation</h5>
+                            <strong>20</strong>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </section>
+        <section class="statistics pb-5"> 
+            <div class="container">
+                <div class="statistics-content">
+                    <div class="recent-reservation p-4" >
+                        <div class="d-flex justify-content-between recent-seservation-title pb-3 mb-3" style="border-bottom: 1px solid #dee2e6;">
+                            <h4>RECENT RESERVATIONS</h4>
+                            <a href="#">
+                                <button type="button" class="btn btn-danger">view all</button>
+                            </a>
+                        </div>
+                        <table class="table ">
+                            <thead>		 
+                                <tr>
+                                    <th scope="col">Food ID</th>
+                                    <th scope="col">Food Name</th>
+                                    <th scope="col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="monthly-revenue p-4" >
+                        <div class="d-flex justify-content-between recent-seservation-title pb-3 mb-3" style="border-bottom: 1px solid #dee2e6;">
+                            <h4>MONTHLY REVENUE</h4>
+                        </div>
+                        <div>
+                            <h6>week1</h6>
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 35%">35%</div>
+                            </div>
+                        </div>
+                        <div>
+                            <h6>week1</h6>
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 58%">58%</div>
+                            </div>
+                        </div>
+                        <div>
+                            <h6>week2</h6>
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 45%">45%</div>
+                            </div>
+                        </div>
+                        <div>
+                            <h6>week3</h6>
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" style="width: 60%">60%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="trend-food">
+            <div class="container">
+                <div class="trend-food-content p-4">
+                    <div class="d-flex justify-content-between recent-seservation-title pb-3 mb-3" style="border-bottom: 1px solid #dee2e6;">
+                        <h4>TRENDING FOOD</h4>
+                    </div>
+                    <div class="your-trend-food d-flex flex-wrap pt-3">
+                            <a href="#" style="text-decoration:none; color:black;">
+                                <div class="trend-food-card mb-4 mx-2" style="width: 220px;box-shadow: 7px 7px 15px rgba(0,0,0,0.1);">
+                                    <img src="https://www.teenaagnel.com/wp-content/uploads/2019/12/food-photography-in-dubai.jpg" class="card-img-top" alt="..." style="width:100%">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Food Title</h6>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Orders <span style="color:red">15</span></span>
+                                            <strong class="food-price">$25.00</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" style="text-decoration:none; color:black;">
+                                <div class="trend-food-card mb-4 mx-2" style="width: 230px;box-shadow: 7px 7px 15px rgba(0,0,0,0.1);">
+                                    <img src="https://www.teenaagnel.com/wp-content/uploads/2019/12/food-photography-in-dubai.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Food Title</h6>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Orders <span style="color:red">15</span></span>
+                                            <strong class="food-price">$25.00</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" style="text-decoration:none; color:black;">
+                                <div class="trend-food-card mb-4 mx-2" style="width: 230px;box-shadow: 7px 7px 15px rgba(0,0,0,0.1);">
+                                    <img src="https://www.teenaagnel.com/wp-content/uploads/2019/12/food-photography-in-dubai.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Food Title</h6>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Orders <span style="color:red">15</span></span>
+                                            <strong class="food-price">$25.00</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" style="text-decoration:none; color:black;">
+                                <div class="trend-food-card mb-4 mx-2" style="width: 230px;box-shadow: 7px 7px 15px rgba(0,0,0,0.1);">
+                                    <img src="https://www.teenaagnel.com/wp-content/uploads/2019/12/food-photography-in-dubai.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Food Title</h6>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Orders <span style="color:red">15</span></span>
+                                            <strong class="food-price">$25.00</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" style="text-decoration:none; color:black;">
+                                <div class="trend-food-card mb-4 mx-2" style="width: 230px;box-shadow: 7px 7px 15px rgba(0,0,0,0.1);">
+                                    <img src="https://www.teenaagnel.com/wp-content/uploads/2019/12/food-photography-in-dubai.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Food Title</h6>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Orders <span style="color:red">15</span></span>
+                                            <strong class="food-price">$25.00</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" style="text-decoration:none; color:black;">
+                                <div class="trend-food-card mb-4 mx-2" style="width: 230px;box-shadow: 7px 7px 15px rgba(0,0,0,0.1);">
+                                    <img src="https://www.teenaagnel.com/wp-content/uploads/2019/12/food-photography-in-dubai.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Food Title</h6>
+                                        <div class="d-flex justify-content-between">
+                                            <span>Orders <span style="color:red">15</span></span>
+                                            <strong class="food-price">$25.00</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

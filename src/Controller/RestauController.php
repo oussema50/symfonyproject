@@ -21,15 +21,20 @@ class RestauController extends AbstractController
             'restaus' => $restauRepository->findAll(),
         ]);
     }
-
+    #[Route('/dashbord', name: 'app_restau_dashbord', methods: ['GET'])]
+    public function dashbord(): Response
+    {
+        return $this->render('restau/dashbord.html.twig');
+    }
     #[Route('/new', name: 'app_restau_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $restau = new Restau();
         $form = $this->createForm(RestauType::class, $restau);
         $form->handleRequest($request);
-
+        $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
+            $restau->setClient($user->getId());
             $entityManager->persist($restau);
             $entityManager->flush();
 
@@ -55,8 +60,9 @@ class RestauController extends AbstractController
     {
         $form = $this->createForm(RestauType::class, $restau);
         $form->handleRequest($request);
-
+        $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
+            $restau->setClient($user);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_restau_index', [], Response::HTTP_SEE_OTHER);

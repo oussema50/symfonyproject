@@ -3,20 +3,9 @@
 {% block title %}New Menu{% endblock %}
 
 {% block body %}
+    <h1>Create new Menu</h1>
 
+    {{ include('menu/_form.html.twig') }}
 
-
-        <div class="container">
-        <h2 class="text-center mt-5 mb-3">Create New Menu</h2>
-        <div class="card">
-            <div class="card-header">
-                <a class="btn btn-outline-info float-right" href="{{ path('app_menu_index') }}"> 
-                    View All Menus
-                </a>
-            </div>
-            <div class="card-body">
-                 {{ include('menu/_form.html.twig') }}
-            </div>
-        </div>
-    </div>
+    <a href="{{ path('app_menu_index') }}">back to list</a>
 {% endblock %}

@@ -35,12 +35,24 @@
                     <li class="nav-item">
                         <a class="nav-link link-color" href="#contact">Contact</a>
                     </li>
-                    <li class="nav-item auth-btn">
-                        <a class="nav-link link-color login-btn" href="{{ path('app_login') }}">Log In</a>
-                    </li>
-                    <li class="nav-item auth-btn">
-                        <a class="nav-link link-color signup-btn" href="{{ path('app_register') }}">Sign Up</a>
-                    </li>
+
+                    {% if app.user %}
+                        {% set resultString = app.user.roles|join(', ') %}
+                        <li class="nav-item auth-btn">
+                            <a class="nav-link link-color login-btn" href="{{ path('app_logout') }}">Log out</a>
+
+                        </li>
+                        <h3 style="color:white">{{app.user.id}}</h3>
+                        <h3 style="color:white">{{app.user.email}}</h3>
+                        
+                    {% else %}
+                        <li class="nav-item auth-btn">
+                            <a class="nav-link link-color login-btn" href="{{ path('app_login') }}">Log In</a>
+                        </li>
+                        <li class="nav-item auth-btn">
+                            <a class="nav-link link-color signup-btn" href="{{ path('app_register') }}">Sign Up</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -87,7 +99,7 @@
             <h2 class="text-center text-primary  display-5">Best Restaurent</h2>
             <h6 class="text-center text-dark " style="text-transform:uppercase;">choose the best restaurent</h6>
             <div class="row py-5 justify-content-between">
-                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;box-shadow: 6px 10px 14px rgba(0,0,0,0.1);">
                     <img src="https://www.touchbistro.com/wp-content/uploads/2021/08/restaurant-interior-design-ideas-thumbnail.jpg" class="card-img-top" alt="restaurant" style="object-fit: cover;width: 100%;height: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">Restaurant Title</h5>
@@ -95,7 +107,7 @@
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
-                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;box-shadow: 6px 10px 14px rgba(0,0,0,0.1);">
                     <img src="https://www.touchbistro.com/wp-content/uploads/2021/08/restaurant-interior-design-ideas-thumbnail.jpg" class="card-img-top" alt="restaurant" style="object-fit: cover;width: 100%;height: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">Restaurant Title</h5>
@@ -103,7 +115,7 @@
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
-                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;box-shadow: 6px 10px 14px rgba(0,0,0,0.1);">
                     <img src="https://www.touchbistro.com/wp-content/uploads/2021/08/restaurant-interior-design-ideas-thumbnail.jpg" class="card-img-top" alt="restaurant" style="object-fit: cover;width: 100%;height: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">Restaurant Title</h5>
@@ -111,7 +123,7 @@
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
-                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;box-shadow: 6px 10px 14px rgba(0,0,0,0.1);">
                     <img src="https://www.touchbistro.com/wp-content/uploads/2021/08/restaurant-interior-design-ideas-thumbnail.jpg" class="card-img-top" alt="restaurant" style="object-fit: cover;width: 100%;height: 100%;">
                     <div class="card-body">
                         <h5 class="card-title">Restaurant Title</h5>
@@ -130,7 +142,7 @@
         <div class="container">
             <h2 class="section-title mb-4">Best <span>Menu</span></h2>
             <div class="row py-5 justify-content-between">
-                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;box-shadow: 6px 10px 14px rgba(0,0,0,0.1);">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sunday_roast_-_roast_beef_1.jpg/800px-Sunday_roast_-_roast_beef_1.jpg" 
                         class="card-img-top" 
                         alt="Beef Roast Source" 
@@ -151,7 +163,7 @@
                         <a href="#" class="btn btn-danger">Read More</a>
                     </div>
                 </div>
-                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;box-shadow: 6px 10px 14px rgba(0,0,0,0.1);">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sunday_roast_-_roast_beef_1.jpg/800px-Sunday_roast_-_roast_beef_1.jpg" 
                         class="card-img-top" 
                         alt="Beef Roast Source" 
@@ -172,7 +184,7 @@
                         <a href="#" class="btn btn-danger">Read More</a>
                     </div>
                 </div>
-                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;box-shadow: 6px 10px 14px rgba(0,0,0,0.1);">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sunday_roast_-_roast_beef_1.jpg/800px-Sunday_roast_-_roast_beef_1.jpg" 
                         class="card-img-top" 
                         alt="Beef Roast Source" 
@@ -193,7 +205,7 @@
                         <a href="#" class="btn btn-danger">Read More</a>
                     </div>
                 </div>
-                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;">
+                <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;box-shadow: 6px 10px 14px rgba(0,0,0,0.1);">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sunday_roast_-_roast_beef_1.jpg/800px-Sunday_roast_-_roast_beef_1.jpg" 
                         class="card-img-top" 
                         alt="Beef Roast Source" 
