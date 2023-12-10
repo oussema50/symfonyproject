@@ -34,10 +34,15 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Restau::class)]
     private Collection $restau;
 
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Reservation::class)]
+    private Collection $reservation;   
+
 
     public function __construct()
     {
         $this->restau = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
+        $this->reservation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -140,5 +145,39 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservation(): Collection
+    {
+        return $this->reservation;
+    }
+
+    public function addReservation(Reservation $reservation): static
+    {
+        if (!$this->reservation->contains($reservation)) {
+            $this->reservation->add($reservation);
+            $reservation->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservation->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getClient() === $this) {
+                $reservation->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+{
+    return $this->getId(); // Adjust to return an appropriate property
+}
    
 }

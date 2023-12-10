@@ -29,11 +29,15 @@ class Restau
 
     #[ORM\ManyToOne(inversedBy: 'restau')]
     private ?Client $client = null;
+
+    #[ORM\OneToMany(mappedBy: 'restau', targetEntity: DiningTable::class)]
+    private Collection $diningTables;
   
 
     public function __construct()
     {
         $this->menus = new ArrayCollection();
+        $this->diningTables = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -115,6 +119,36 @@ class Restau
     public function setClient(?Client $client): static
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DiningTable>
+     */
+    public function getDiningTables(): Collection
+    {
+        return $this->diningTables;
+    }
+
+    public function addDiningTable(DiningTable $diningTable): static
+    {
+        if (!$this->diningTables->contains($diningTable)) {
+            $this->diningTables->add($diningTable);
+            $diningTable->setRestau($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiningTable(DiningTable $diningTable): static
+    {
+        if ($this->diningTables->removeElement($diningTable)) {
+            // set the owning side to null (unless already changed)
+            if ($diningTable->getRestau() === $this) {
+                $diningTable->setRestau(null);
+            }
+        }
 
         return $this;
     }

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DiningTable{% endblock %}
+
+{% block body %}
+    <h1>Create new DiningTable</h1>
+    <form action="" method="Post">
+        {{form_widget(diningTable)}}
+        <select name="restau" >
+            {% for restau in restaus%}
+                <option value="{{ restau.id }}">{{ restau.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+    
+
+    <a href="{{ path('app_dining_table_index') }}">back to list</a>
+{% endblock %}

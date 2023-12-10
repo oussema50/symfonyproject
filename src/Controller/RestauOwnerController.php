@@ -19,14 +19,17 @@ class RestauOwnerController extends AbstractController
     {
         return $this->render('/restau/dashbord.html.twig');
     }
-    // #[Route('/restaurant', name: 'app_restau_index', methods: ['GET'])]
-    // public function restaurants(RestauRepository $restauRepository): Response
-    // {
-    //     $user = $this->getUser();
-    //     return $this->render('restau/index.html.twig', [
-    //         'restaus' => $restauRepository->find()
-    //     ]);
-    // }
+    #[Route('/restaurants', name: 'app_restau_index', methods: ['GET'])]
+    public function restaurants(RestauRepository $restauRepository, EntityManagerInterface $em): Response
+    {
+        $user = $this->getUser();
+        $query = $em->createQuery(
+               "SELECT r FROM App\Entity\Restau r 
+               where r.client =:userId");
+            $query->setParameter('userId', $user);
+           $restaus = $query->getResult();
+        return $this->render('restau/index.html.twig',['restaus' => $restaus]);
+    }
     #[Route('/new', name: 'app_restauowner_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -35,7 +38,7 @@ class RestauOwnerController extends AbstractController
         $form->handleRequest($request);
         $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
-            $restau->setClient($user->getId());
+            $restau->setClient($user);
             $entityManager->persist($restau);
             $entityManager->flush();
 

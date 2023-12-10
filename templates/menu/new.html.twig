@@ -3,9 +3,25 @@
 {% block title %}New Menu{% endblock %}
 
 {% block body %}
-    <h1>Create new Menu</h1>
-
-    {{ include('menu/_form.html.twig') }}
-
-    <a href="{{ path('app_menu_index') }}">back to list</a>
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Create New Menu</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_menu_index') }}"> 
+                    View All Menus
+                </a>
+            </div>
+            <div class="card-body"> 
+                <form action="" method="Post">
+                    <input type="file" name="menu">
+                    <select name="restau" >
+                        {% for restau in restaus%}
+                            <option value="{{ restau.id }}">{{ restau.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

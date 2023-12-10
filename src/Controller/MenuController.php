@@ -29,44 +29,54 @@ class MenuController extends AbstractController
     #[Route('/new', name: 'app_menu_new', methods: ['GET', 'POST'])]
     public function store(Request $request , EntityManagerInterface $entityManager ): Response
     {
+        $user = $this->getUser();
+        $query = $entityManager->createQuery(
+            "SELECT r FROM App\Entity\Restau r 
+            where r.client =:userId");
+        $query->setParameter('userId', $user);
+        $restaus = $query->getResult();
+
         $menu = new Menu();
         $form = $this->createForm(MenuType::class,$menu);
         $form->handleRequest($request);
-        $user = $this->getUser();
-        
-        if($form->isSubmitted() && $form->isValid()){
-            $menu = $form->getData();
-            if($request->files->get('menu')['image']){
-                $image = $request->files->get('menu')['image'];
-                $image_name = time().'_'.$image->getClientOriginalName();
-                $image->move($this->getParameter('image_directory'),$image_name);
-                $menu->setImage($image_name);
-            }
-            if($user){
-                $id = $user->getId();
-                $menu->setRestau($id);
-            }
-            // tell Doctrine you want to (eventually) save the Product (no queries yet)
-                $this->entityManager->persist($menu);
 
-            // actually executes the queries (i.e. the INSERT query)
-            $this->entityManager->flush();
-            $this->addFlash(
-                'success',
-                'Your Menu was saved'
-            );
-            return $this->redirectToRoute('app_menu_index');
+        $selectedRestau = $request->request->get('restau');
+        $idRestau = (int)$selectedRestau;
+        $queryRestau = $entityManager->createQuery(
+            "SELECT r FROM App\Entity\Restau r
+            where r.id = :idRestau");
+        $queryRestau->setParameter('idRestau', $idRestau);
+        $oneRestau = $queryRestau->getResult();
+        
+        if($form->isSubmitted()){
+            // var_dump($form->get('image')->getData());
+           var_dump($request->files->get('menu'));
+            // $menu = $form->getData();
+            // if($request->files->get('menu')['image']){
+            //     $image = $request->files->get('menu')['image'];
+            //     $image_name = time().'_'.$image->getClientOriginalName();
+            //     $image->move($this->getParameter('image_directory'),$image_name);
+            //     $menu->setImage($image_name);
+            // }
+            // $menu->setRestau($oneRestau[0]);
+            // $this->entityManager->persist($menu);
+            // $this->entityManager->flush();
+            // $this->addFlash(
+            //     'success',
+            //     'Your Menu was saved'
+            // );
+            // return $this->redirectToRoute('app_menu_index');
         }
 
-        return $this->renderForm('menu/new.html.twig', [
-            'menu' => $menu,
-            'form' => $form,
+        return $this->renderForm('menu/new.html.twig',[
+            'restaus' => $restaus
         ]);
+
     }
-#[Route('/{id}/edit', name: 'app_menu_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_menu_edit', methods: ['GET', 'POST'])]
 public function edit(Request $request, EntityManagerInterface $entityManager, Menu $menu): Response
 {
-    $form = $this->createForm(MenuType::class, $menu);
+    $form = $this->createForm(MenuType::class, $menu); 
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {

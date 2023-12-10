@@ -15,13 +15,9 @@ class MenuType extends AbstractType
     {
         $builder
 	    ->add('image',FileType::class,[
-                'required' => false,
-                'mapped' => false,
-            ])
-            ->add('restau',HiddenType::class,[
-                'mapped' => false, // If you don't want to map it to an entity property
-                // Add other options as needed
-            ]);
+            'required' => false,
+            'mapped' => false,
+        ])
         ;
     }
 

@@ -34,7 +34,7 @@ class RestauController extends AbstractController
         $form->handleRequest($request);
         $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()) {
-            $restau->setClient($user->getId());
+            $restau->setClient($user);
             $entityManager->persist($restau);
             $entityManager->flush();
 
