@@ -4,7 +4,6 @@
 
 {% block body %}
     <h1>Create new Reservation</h1>
-    {{app.user.id}}
     {{ include('reservation/_form.html.twig') }}
 
     <a href="{{ path('app_reservation_index') }}">back to list</a>

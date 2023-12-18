@@ -22,18 +22,36 @@ class ReservationController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}/new', name: 'app_reservation_new', methods: ['GET', 'POST'])]
+    public function new(Request $request,$id, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
+        $query = $entityManager->createQuery(
+            "SELECT d FROM App\Entity\DiningTable d 
+            where d.id =:id");
+         $query->setParameter('id', $id);
+        $table = $query->getResult();
+
+        $restauId = $table[0]->getRestau();
+
+        $queryRestau = $entityManager->createQuery(
+            "SELECT r FROM App\Entity\Restau r 
+            where r.id =:id");
+         $queryRestau->setParameter('id', $restauId);
+        $restauResult = $queryRestau->getResult();
+        $restauResultId = $restauResult[0]->getId();
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $reservation->setClient($user);
+            $reservation->setRestauId($restauResultId);
+            $reservation->setDinningTable($table[0]);
+            $table[0]->setIsreserved(true);
             $entityManager->persist($reservation);
             $entityManager->flush();
+            
 
             return $this->redirectToRoute('app_reservation_index', [], Response::HTTP_SEE_OTHER);
         }

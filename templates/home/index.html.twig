@@ -24,7 +24,7 @@
                         <a class="nav-link link-color" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-color" href="#best-restaurant">Restaurant</a>
+                        <a class="nav-link link-color" href="{{path('app_client_restaurants')}}">Restaurants</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-color" href="#best-menu">Menu</a>
@@ -42,8 +42,7 @@
                             <a class="nav-link link-color login-btn" href="{{ path('app_logout') }}">Log out</a>
 
                         </li>
-                        <h3 style="color:white">{{app.user.id}}</h3>
-                        <h3 style="color:white">{{app.user.email}}</h3>
+                       
                         
                     {% else %}
                         <li class="nav-item auth-btn">

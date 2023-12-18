@@ -49,23 +49,21 @@ class MenuController extends AbstractController
         $oneRestau = $queryRestau->getResult();
         
         if($form->isSubmitted()){
-            // var_dump($form->get('image')->getData());
-           var_dump($request->files->get('menu'));
-            // $menu = $form->getData();
-            // if($request->files->get('menu')['image']){
-            //     $image = $request->files->get('menu')['image'];
-            //     $image_name = time().'_'.$image->getClientOriginalName();
-            //     $image->move($this->getParameter('image_directory'),$image_name);
-            //     $menu->setImage($image_name);
-            // }
-            // $menu->setRestau($oneRestau[0]);
-            // $this->entityManager->persist($menu);
-            // $this->entityManager->flush();
-            // $this->addFlash(
-            //     'success',
-            //     'Your Menu was saved'
-            // );
-            // return $this->redirectToRoute('app_menu_index');
+            $menu = $form->getData();
+            if($request->files->get('menu')['image']){
+                $image = $request->files->get('menu')['image'];
+                $image_name = time().'_'.$image->getClientOriginalName();
+                $image->move($this->getParameter('image_directory'),$image_name);
+                $menu->setImage($image_name);
+            }
+            $menu->setRestau($oneRestau[0]);
+            $this->entityManager->persist($menu);
+            $this->entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Your Menu was saved'
+            );
+            return $this->redirectToRoute('app_menu_index');
         }
 
         return $this->renderForm('menu/new.html.twig',[

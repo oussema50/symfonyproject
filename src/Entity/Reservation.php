@@ -25,9 +25,12 @@ class Reservation
 
     #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: DiningTable::class)]
     private Collection $diningTables;
-
-    #[ORM\OneToOne(inversedBy: 'reservations', cascade: ['persist', 'remove'])]
+    //cascade: ['persist', 'remove']
+    #[ORM\OneToOne(inversedBy: 'reservations')]
     private ?DiningTable $DinningTable = null;
+
+    #[ORM\Column]
+    private ?int $restauId = null;
 
     public function __construct()
     {
@@ -101,6 +104,18 @@ class Reservation
     public function setDinningTable(?DiningTable $DinningTable): static
     {
         $this->DinningTable = $DinningTable;
+
+        return $this;
+    }
+
+    public function getRestauId(): ?int
+    {
+        return $this->restauId;
+    }
+
+    public function setRestauId(int $restauId): static
+    {
+        $this->restauId = $restauId;
 
         return $this;
     }

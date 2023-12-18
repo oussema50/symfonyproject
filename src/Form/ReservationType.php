@@ -18,7 +18,10 @@ class ReservationType extends AbstractType
                 'mapped' => false, // If you don't want to map it to an entity property
                 // Add other options as needed
             ])
-            ->add('DinningTable')
+            ->add('DinningTable',HiddenType::class,[
+                'mapped' => false, // If you don't want to map it to an entity property
+                // Add other options as needed
+            ])
         ;
     }
 

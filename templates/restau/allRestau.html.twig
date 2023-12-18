@@ -3,22 +3,21 @@
 {% block title %}Restaurant{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <!-- Best Restaurent Section -->
-        <section  id="best-restaurent" class=" bg-light py-5 py-5">
-            <div class="container">
-                <h2 class="text-center text-primary  display-5">Restaurent</h2>
-                <div class="row py-5 justify-content-between">
+    <!-- Best Restaurent Section -->
+    <section  id="best-restaurent" class=" bg-light py-5 py-5">
+        <div class="container">
+            <h2 class="text-center text-primary  display-5">Restaurent</h2>
+            <div class="row py-5 justify-content-around">
+                {% for restau in restaus %}
                     <div class="card col-lg-4 mb-5 " style=" width:300px;  padding: 0;box-shadow: 6px 10px 14px rgba(0,0,0,0.1);">
                         <img src="https://www.touchbistro.com/wp-content/uploads/2021/08/restaurant-interior-design-ideas-thumbnail.jpg" class="card-img-top" alt="restaurant" style="object-fit: cover;width: 100%;height: 100%;">
                         <div class="card-body">
-                            <h5 class="card-title">Restaurant Title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">{{ restau.name }}</h5>
+                            <a href="{{path('app_restau_show_client', {'id': restau.id})}}" class="btn btn-primary">Reserve a Table</a>
                         </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 {% endblock %}

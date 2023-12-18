@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restau{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Restau</h1>
+
+        <table class="table">
+            <tbody>
+
+                <tr>
+                    <th>Name</th>
+                    <td>{{ restau.name }}</td>
+                </tr>
+                <tr>
+                    <th>Log</th>
+                    <td>{{ restau.log }}</td>
+                </tr>
+                <tr>
+                    <th>Lat</th>
+                    <td>{{ restau.lat }}</td>
+                </tr>
+            </tbody>
+        </table>
+       
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">capacity</th>
+                    <th scope="col">reserve table</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for table in tables %}
+                    <tr>
+                        <th scope="row">{{ table.id }}</th>
+                        <td>{{ table.capacity }}</td>
+                        <td>
+                            {% if table.isreserved %}
+                            <a href="{{path('app_reservation_new', {'id': table.id})}}" style="pointer-events: none; opacity:0.4;">
+                                    <button class="btn btn-primary">reserve</button>
+                                </a>
+                                
+                            {% else %}
+                                <a href="{{path('app_reservation_new', {'id': table.id})}}">
+                                    <button class="btn btn-primary">reserve</button>
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        
+    </div>
+{% endblock %}
